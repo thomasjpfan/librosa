@@ -31,7 +31,7 @@ jobs:
 
     - name: Install librosa
       shell: bash -l {0}
-      run: python -m pip install --upgrade-strategy only-if-needed -e .[tests]
+      run: python -m pip install --upgrade-strategy only-if-needed -e .[tests] --no-deps
 
     - name: Run pytest
       run: pytest
