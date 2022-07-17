@@ -23,11 +23,11 @@ jobs:
     - name: Install OS dependencies
       run: |
         sudo apt-get update -yy
-        sudo apt-get install -yy libsamplerate0
+        sudo apt-get install -yy libsamplerate0 libsndfile1
 
     - name: Install Python dependencies
       run: |
-        pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple numpy scipy scikit-learn matplotlib soundfile numba
+        pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple numpy scipy scikit-learn matplotlib
 
     - name: Install librosa
       shell: bash -l {0}
