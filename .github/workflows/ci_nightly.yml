@@ -6,6 +6,10 @@ on:
     - cron: "42 2 */1 * *"
   push:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: True
+
 jobs:
   nightly_ci:
     name: Python 3.10 on bleeding edge
