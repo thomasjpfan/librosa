@@ -28,8 +28,7 @@ jobs:
     - name: Install Python dependencies
       run: |
         python -m pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple scipy scikit-learn matplotlib
-        python -m pip install numba --no-deps
-        python -m pip install matplotlib pytest-mpl pytest-cov pytest contextlib2 samplerate soxr audioread decorator resampy soundfile pooch packaging llvmlite
+        python -m pip install matplotlib pytest-mpl pytest-cov pytest contextlib2 samplerate soxr audioread decorator resampy soundfile pooch packaging numba
 
     - name: Install librosa
       run: python -m pip install --upgrade-strategy only-if-needed -e . --no-deps
