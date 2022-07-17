@@ -1,0 +1,37 @@
+name: Nightly CI for Bleeding Edge
+
+on:
+  schedule:
+    # Nightly build at 2:42 A.M.
+    - cron: "42 2 */1 * *"
+  push:
+
+jobs:
+  nightly_ci:
+    name: Python 3.10 on bleeding edge
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+
+    - name: Setup Python
+      run: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install OS dependencies
+      run: |
+        sudo apt-get update -yy
+        sudo apt-get install -yy libsamplerate0
+
+    - name: Install Python dependencies
+      run: |
+        pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple numpy scipy scikit-learn matplotlib soundfile numba
+
+    - name: Install librosa
+      shell: bash -l {0}
+      run: python -m pip install --upgrade-strategy only-if-needed -e .[tests]
+
+    - name: Run pytest
+      run: pytest
