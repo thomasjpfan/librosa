@@ -25,10 +25,13 @@ jobs:
         sudo apt-get update -yy
         sudo apt-get install -yy libsamplerate0 libsndfile1
 
-    - name: Install Python dependencies
+    - name: Install Python nightly dependencies
       run: |
-        #
         python -m pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple scipy scikit-learn matplotlib
+
+    - name: Show dependencies and their versions
+      run: |
+        python -m pip list
 
     - name: Install librosa
       run: python -m pip install --upgrade-strategy only-if-needed .[tests]
